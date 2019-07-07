@@ -1,0 +1,6 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Thu Sep 07 13:55:43 IST 2017
+https\://repo.spring.io/libs-release/.lastUpdated=1504772743372
+@default-spring-releases-https\://repo.spring.io/libs-release/.lastUpdated=1504669615657
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1504669615665
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.apache.commons\:commons-dbcp2\:pom\:2.1 from/to central (https\://repo.maven.apache.org/maven2)\: repo.maven.apache.org

@@ -1,0 +1,6 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Thu Sep 07 13:55:45 IST 2017
+https\://repo.spring.io/libs-release/.lastUpdated=1504772745073
+@default-spring-releases-https\://repo.spring.io/libs-release/.lastUpdated=1504669615674
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1504669615679
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.apache.commons\:commons-pool2\:pom\:2.4.2 from/to central (https\://repo.maven.apache.org/maven2)\: repo.maven.apache.org

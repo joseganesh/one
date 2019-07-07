@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JNLP File for ButtonColumn -->
+
+<jnlp spec="1.0+"
+    codebase="http://www.camick.com/java/webstart/"
+    href="ButtonColumn.jnlp">
+    <information>
+        <title>ButtonColumn Demo</title>
+        <vendor>Tips4Java</vendor>
+        <homepage href="http://tips4java.wordpress.com/"/>
+        <description>ButtonColumn Demo</description>
+        <description kind="short">Examples using an ButtonColumn</description>
+        <offline-allowed/>
+    </information>
+    <resources>
+	    <j2se version="1.6+"/>
+   	    <jar href="ButtonColumn.jar"/>
+    </resources>
+    <application-desc main-class="ButtonColumnTest"/>
+</jnlp>
