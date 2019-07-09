@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.Box;
 import javax.swing.JFrame;
@@ -135,9 +136,14 @@ static Viewpage frameview;
 		JMenuItem sales = new JMenuItem("SALES");
 		sales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SalesScreen framesalescr = new SalesScreen();
-				framesalescr.setVisible(true);
-				setVisible(false);
+				try {
+					SalesScreen framesalescr = new SalesScreen();
+					framesalescr.setVisible(true);
+					setVisible(false);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		

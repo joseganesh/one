@@ -91,7 +91,7 @@ public class Login extends JFrame {
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 String pwd=login.getText();
-				    if(pwd.equals("a123") )
+				    if(pwd.equals("a") )
 				    {
 				    	Viewpage frame = new Viewpage();
 						frame.setVisible(true);
