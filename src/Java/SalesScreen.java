@@ -34,6 +34,8 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import org.jewellery.reports.Reports;
+
 import com.toedter.calendar.JDateChooser;
 
 import DB.DbConnection;
@@ -1167,9 +1169,10 @@ public class SalesScreen extends JFrame {
 					e.printStackTrace();
 				}
 				
-				
+				Reports r = new Reports();
+				  r.generateSalesInvoice();
 				 
-				List<SalesDto> newDto = new ArrayList<SalesDto>();
+				/*List<SalesDto> newDto = new ArrayList<SalesDto>();
 				for(SalesDto obj :saleslist){
 					obj.setName(ss.getName());
 					obj.setAddress(ss.getAddress());
@@ -1181,7 +1184,7 @@ public class SalesScreen extends JFrame {
 					obj.setTotalAmount(ss.getTotalAmount());
 					obj.setAmountInWords(ss.getAmountInWords());
 					newDto.add(obj);
-				}
+				}*/
 				
 				/*try{
  					
@@ -1199,7 +1202,7 @@ public class SalesScreen extends JFrame {
  						e3.printStackTrace();
  					}*/
 				
-				downloadPDFResource(newDto);
+				//downloadPDFResource(newDto);
 				try {
 					framesalescr.setVisible(false);
 					framesalescr = new SalesScreen();
@@ -1288,7 +1291,7 @@ public class SalesScreen extends JFrame {
 	}
 	
 	
-public void downloadPDFResource(List<SalesDto> saleslist) {
+/*public void downloadPDFResource(List<SalesDto> saleslist) {
 		
 		
 		String reportSrcFile = "jewellery.jrxml";
@@ -1305,7 +1308,7 @@ ex.printStackTrace();
 }
 
 
-}
+}*/
 	
 	
 }

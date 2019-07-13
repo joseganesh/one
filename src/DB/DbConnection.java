@@ -12,7 +12,7 @@ public class DbConnection
 			 
 			if(conn==null){
 				Class.forName("com.mysql.jdbc.Driver"); 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jewellery","root","pass");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jewellery","root","");
 		//	JOptionPane.showMessageDialog(null, "connected sucessfully!");
 			
 			}
