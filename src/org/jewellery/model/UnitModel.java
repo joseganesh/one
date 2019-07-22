@@ -20,5 +20,21 @@ public class UnitModel {
 	
 	@Column(name="Carat")
 	private Integer Carat;
+
+	public Integer getUnitId() {
+		return UnitId;
+	}
+
+	public Integer getCarat() {
+		return Carat;
+	}
+
+	public void setUnitId(Integer unitId) {
+		UnitId = unitId;
+	}
+
+	public void setCarat(Integer carat) {
+		Carat = carat;
+	}
 	
 }
