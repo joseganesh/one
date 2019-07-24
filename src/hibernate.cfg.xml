@@ -36,7 +36,18 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="org.jewellery.model.ProductModel"/>
-        
+        <mapping class="org.jewellery.model.AccountGroupModel"/>
+        <mapping class="org.jewellery.model.CashDataModel"/>
+        <mapping class="org.jewellery.model.CategoryModel"/>
+        <mapping class="org.jewellery.model.CustomerModel"/>
+        <mapping class="org.jewellery.model.ModelJewel"/>
+        <mapping class="org.jewellery.model.ProductModel"/>
+        <mapping class="org.jewellery.model.RateModel"/>
+        <mapping class="org.jewellery.model.SalesScreenModel"/>
+        <mapping class="org.jewellery.model.StockModel"/>
+        <mapping class="org.jewellery.model.TaxModel"/>
+        <mapping class="org.jewellery.model.UnitModel"/>
+        <mapping class="org.jewellery.model.VendorModel"/>
 
     </session-factory>
 
