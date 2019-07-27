@@ -29,9 +29,7 @@ public class Reports {
 	private TaxModel tax;
 	private AccountGroupModel acgroup;
 	private CashDataModel cashmodel;
-	private CustomerModel customer;
 	private ModelJewel modeljewel;
-	private SalesScreenModel salesscreen;
 	private StockModel stock;
 	private UnitModel unit;
 	private VendorModel vendor;
@@ -41,7 +39,7 @@ public class Reports {
 	
 	hibernteConnection hb = new hibernteConnection();
 	
-	public void generateSalesInvoice(int salesid){
+	public void generateSalesInvoice(CashDataModel cashDataModel ,SalesScreenModel salesScreenModel, CustomerModel customermodel){
 		
 		product=hb.getProducts();
 		saleslist= query.getsalesinvoice(salesid);

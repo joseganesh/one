@@ -34,6 +34,13 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import org.jewellery.model.CashDataModel;
+import org.jewellery.model.CategoryModel;
+import org.jewellery.model.CustomerModel;
+import org.jewellery.model.ModelJewel;
+import org.jewellery.model.ProductModel;
+import org.jewellery.model.SalesScreenModel;
+import org.jewellery.model.StockModel;
 import org.jewellery.reports.Reports;
 
 import com.toedter.calendar.JDateChooser;
@@ -84,6 +91,14 @@ public class SalesScreen extends JFrame {
 	private JTextField alltmt;
 	private static double tamt;
 	String inoicesqlQ;
+	
+	private CustomerModel customermodel;
+	private CashDataModel cashDataModel;
+	private SalesScreenModel salesScreenModel;
+	private ProductModel productmodel;
+	private CategoryModel categorymodel;
+	private ModelJewel modeljewel;
+	private StockModel stockModel;
 
 	/**
 	 * Launch the application.
@@ -130,26 +145,36 @@ public class SalesScreen extends JFrame {
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(108, 23, 151, 20);
 		contentPane.add(dateChooser);
-		String newInvc = "SS/11/2019";
+		String newInvc = null;
+		
 		// S/1819/1
-		if (newInvc == "") {
+		//if (newInvc == "") {
 			String invoiceNo = "";
+			int yer=0;
 			Statement invtm = DbConnection.getconnection().createStatement();
-			inoicesqlQ = "SELECT max(Invoiceno) as Invoiceno FROM cashdata";
+			//inoicesqlQ = "SELECT max(Invoiceno) as Invoiceno FROM cashdata";
+			inoicesqlQ = "SELECT count(*) as Invoiceno FROM cashdata";
 			ResultSet invoicers = invtm.executeQuery(inoicesqlQ);
-			while (invoicers.next()) {
-				invoiceNo = invoicers.getString("Invoiceno");
+			if(invoicers !=null)
+			{
+				while (invoicers.next()) {
+					invoiceNo = invoicers.getString("Invoiceno");
+				}
+				// ss/11/2019
+				String invcNo[] = invoiceNo.split("/");
+				Long no = Long.parseLong(invcNo[0]) + 1;
+				Date dt = new Date();
+			    yer = dt.getYear();
+				newInvc = "SS/" + no + "/" + yer;
+				
 			}
-			// ss/11/2019
-			String invcNo[] = invoiceNo.split("/");
-			Long no = Long.parseLong(invcNo[1]) + 1;
-			Date dt = new Date();
-			int yer = dt.getYear();
-
+			else
+			{
+				newInvc = "SS/" + "1" + "/" + yer;
+			}
 			// Long yr = Long.parseLong(invcNo[2])+yer;
 
-			newInvc = "SS/" + no + "/" + yer;
-		}
+				//}
 		JLabel lblInvoiceNumber = new JLabel("Invoice Number");
 		lblInvoiceNumber.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblInvoiceNumber.setForeground(new Color(255, 0, 0));
@@ -875,6 +900,11 @@ public class SalesScreen extends JFrame {
 				customerdto ss = new customerdto();
 				List<SalesDto> saleslist = new ArrayList<SalesDto>();
 				SalesDto sd = null;
+				
+				customermodel.setCustomerName(name.getText());
+				customermodel.setCustomerAddress(textArea.getText());
+				customermodel.setCustomerContact(contactno.getText());
+				
 				try {
 
 					String query2 = "insert into customer(CustomerName,ContactNo,Address) " + "values(?,?,?)";
@@ -937,6 +967,19 @@ public class SalesScreen extends JFrame {
 					pt1.execute();
 					pt1.close();
 
+					cashDataModel.setCash(Cash.getText());
+					cashDataModel.setCashdiscount(Double.parseDouble(cashdiscount.getText()));
+					cashDataModel.setTaxrs(Double.parseDouble(taxrs.getText()));
+					cashDataModel.setCgst(Double.parseDouble(cgst.getText()));
+					cashDataModel.setSgst(Double.parseDouble(sgst.getText()));
+					cashDataModel.setIGST(Double.parseDouble(igst.getText()));
+					cashDataModel.setTotalamtpay(Double.parseDouble(totalamtpay.getText()));
+					cashDataModel.setAmntinwords(amntinwords.getText());
+					cashDataModel.setInvoiceno(invoice.getText());
+					customermodel.setId(CashDataId);
+					cashDataModel.setCustomermodel(customermodel);
+					cashDataModel.setDate(date);
+
 					Cash.setText("");
 					cashdiscount.setText("");
 					taxrs.setText("");
@@ -966,6 +1009,20 @@ public class SalesScreen extends JFrame {
 					DropDownItem itemprodname = (DropDownItem) itemname.getSelectedItem();
 					pt.setInt(2, itemprodname.getId());
 					sd.setItemName(itemprodname.getId() + "");
+					
+					productmodel.setProductId(itemprodcode.getId());
+					salesScreenModel.setProductmodel(productmodel);
+					categorymodel.setCategoryId(itemprodname.getId());
+					salesScreenModel.setCategorymodel(categorymodel);
+					salesScreenModel.setHSNCode(hsncode.getText());
+					salesScreenModel.setQuantity(Double.parseDouble(quantity.getText()));
+					salesScreenModel.setGramWt(Double.parseDouble(gwt.getText()));
+					salesScreenModel.setStoneWt(Double.parseDouble(swt.getText()));
+					salesScreenModel.setNetwt(Double.parseDouble(netwt.getText()));
+					salesScreenModel.setRate(Double.parseDouble(rate.getText()));
+					salesScreenModel.setVA(Double.parseDouble(va.getText()));
+					salesScreenModel.setStoneCash(Double.parseDouble(stonecash.getText()));
+					salesScreenModel.setTotalamount(Double.parseDouble(totalamount.getText()));
 					pt.setString(3, hsncode.getText());
 					sd.setHsncode(hsncode.getText());
 					pt.setInt(4, Integer.parseInt(quantity.getText()));
@@ -1108,7 +1165,13 @@ public class SalesScreen extends JFrame {
 						pt1.setDouble(4, -qt);
 						double nt = Double.parseDouble(netwt.getText());
 						pt1.setDouble(5, -nt);
-
+						productmodel.setProductId(itemprodcode1.getId());
+						stockModel.setProductmodel(productmodel);
+						modeljewel.setModelId(model1.getId());
+					    stockModel.setModeljewel(modeljewel);
+					    stockModel.setQuantity(Double.parseDouble(quantity.getText()));
+					    stockModel.setNetWt(Double.parseDouble(netwt.getText()));
+                        stockModel.setDate(dateChooser.getDate());
 						pt1.execute();
 						quantity.setText("");
 						netwt.setText("");
@@ -1137,7 +1200,7 @@ public class SalesScreen extends JFrame {
 
 				Reports r = new Reports();
 				// r.generateSalesInvoice();
-				r.generateSalesInvoice(Integer.parseInt(inoicesqlQ));
+				r.generateSalesInvoice(cashDataModel ,salesScreenModel, customermodel);
 
 				/*
 				 * List<SalesDto> newDto = new ArrayList<SalesDto>(); for(SalesDto obj
