@@ -901,9 +901,6 @@ public class SalesScreen extends JFrame {
 				List<SalesDto> saleslist = new ArrayList<SalesDto>();
 				SalesDto sd = null;
 				
-				customermodel.setCustomerName(name.getText());
-				customermodel.setCustomerAddress(textArea.getText());
-				customermodel.setCustomerContact(contactno.getText());
 				
 				try {
 
@@ -918,6 +915,9 @@ public class SalesScreen extends JFrame {
 					ss.setContactNo(contactno.getText());
 					pt2.setString(3, textArea.getText());
 					ss.setAddress(textArea.getText());
+					customermodel.setCustomerName(name.getText());
+					customermodel.setCustomerAddress(textArea.getText());
+					customermodel.setCustomerContact(contactno.getText());
 					pt2.execute();
 					pt2.close();
 					String sqlQ = "SELECT max(CustomerId) as id FROM customer";
