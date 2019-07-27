@@ -42,7 +42,7 @@ public class Reports {
 	public void generateSalesInvoice(CashDataModel cashDataModel ,SalesScreenModel salesScreenModel, CustomerModel customermodel){
 		
 		product=hb.getProducts();
-		saleslist= query.getsalesinvoice(salesid);
+	//	saleslist= query.getsalesinvoice(salesid);
 		String fileLocation;
 		String destinationPath = null;
 		File destination;
