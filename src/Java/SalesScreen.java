@@ -908,7 +908,7 @@ public class SalesScreen extends JFrame {
 
 					Statement tm = DbConnection.getconnection().createStatement();
 					PreparedStatement pt2 = DbConnection.getconnection().prepareStatement(query2);
-
+                    customermodel=new CustomerModel();
 					pt2.setString(1, name.getText());
 					ss.setName(name.getText());
 					pt2.setString(2, contactno.getText());
@@ -941,7 +941,7 @@ public class SalesScreen extends JFrame {
 
 					Statement tm = DbConnection.getconnection().createStatement();
 					PreparedStatement pt1 = DbConnection.getconnection().prepareStatement(query1);
-
+                    cashDataModel=new CashDataModel();
 					pt1.setString(1, Cash.getText());
 					ss.setTotalAmtbefore(Cash.getText());
 					pt1.setDouble(2, Double.parseDouble(cashdiscount.getText()));
@@ -1001,7 +1001,8 @@ public class SalesScreen extends JFrame {
 
 					Statement tm = DbConnection.getconnection().createStatement();
 					PreparedStatement pt = DbConnection.getconnection().prepareStatement(query);
-
+					salesScreenModel=new SalesScreenModel();
+					categorymodel=new CategoryModel();
 					sd = new SalesDto();
 					DropDownItem itemprodcode = (DropDownItem) model.getSelectedItem();
 					pt.setInt(1, itemprodcode.getId());
@@ -1009,7 +1010,7 @@ public class SalesScreen extends JFrame {
 					DropDownItem itemprodname = (DropDownItem) itemname.getSelectedItem();
 					pt.setInt(2, itemprodname.getId());
 					sd.setItemName(itemprodname.getId() + "");
-					
+					productmodel = new ProductModel();
 					productmodel.setProductId(itemprodcode.getId());
 					salesScreenModel.setProductmodel(productmodel);
 					categorymodel.setCategoryId(itemprodname.getId());
@@ -1165,6 +1166,9 @@ public class SalesScreen extends JFrame {
 						pt1.setDouble(4, -qt);
 						double nt = Double.parseDouble(netwt.getText());
 						pt1.setDouble(5, -nt);
+						productmodel=new ProductModel();
+						stockModel=new StockModel();
+						modeljewel=new ModelJewel();
 						productmodel.setProductId(itemprodcode1.getId());
 						stockModel.setProductmodel(productmodel);
 						modeljewel.setModelId(model1.getId());
