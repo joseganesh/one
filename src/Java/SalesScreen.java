@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -150,7 +152,7 @@ public class SalesScreen extends JFrame {
 		// S/1819/1
 		//if (newInvc == "") {
 			String invoiceNo = "";
-			int yer=0;
+			int year=0;
 			Statement invtm = DbConnection.getconnection().createStatement();
 			//inoicesqlQ = "SELECT max(Invoiceno) as Invoiceno FROM cashdata";
 			inoicesqlQ = "SELECT count(*) as Invoiceno FROM cashdata";
@@ -164,13 +166,14 @@ public class SalesScreen extends JFrame {
 				String invcNo[] = invoiceNo.split("/");
 				Long no = Long.parseLong(invcNo[0]) + 1;
 				Date dt = new Date();
-			    yer = dt.getYear();
-				newInvc = "SS/" + no + "/" + yer;
+				year = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(dt)).getYear();
+			    //yer = dt.getYear();
+				newInvc = "SS/" + no + "/" + year;
 				
 			}
 			else
 			{
-				newInvc = "SS/" + "1" + "/" + yer;
+				newInvc = "SS/" + "1" + "/" + year;
 			}
 			// Long yr = Long.parseLong(invcNo[2])+yer;
 
